@@ -9,14 +9,14 @@ const getMessage = (arr) => {
     if (arr[i].type === "TEXT") {
       result.push(      
         <div>
-          <li>{arr[i].senderNickname} : {arr[i].message}</li>
+          <li>{arr[i].senderEmail} : {arr[i].message}</li>
         </div>
       );
     } else {
       result.push(  
         <div>
           <li>
-            {arr[i].senderNickname} : 
+            {arr[i].senderEmail} : 
             <img src={arr[i].message} width="140"/>
           </li>
         </div>
@@ -64,7 +64,7 @@ function CreateReadChat() {
     if (!client.current.connected) return;
     var data = {};
     data = {
-      senderNickname: sender,
+      senderEmail: sender,
       message: chat,
       type: type,
     };
@@ -80,10 +80,7 @@ function CreateReadChat() {
 
   const subscribe = () => {
     client.current.subscribe(`/sub/${params.room}`, (body) => {
-      // const json_body = JSON.parse(body.body);
-      // setChatList((_chat_list) => [
-      //   ..._chat_list, [json_body.senderNickname, json_body.message, json_body.type]
-      // ]);
+      
       setChatList((_chatMessages) => [..._chatMessages, JSON.parse(body.body)]);
     });
   };
