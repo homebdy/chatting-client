@@ -112,7 +112,7 @@ function CreateReadChat() {
       })
     .then((response) => {
       if (response.status === 200) {
-        publish(response.data, sender, "FILE");
+        publish(response.data, sender, "IMAGE");
       }
     });
   };
